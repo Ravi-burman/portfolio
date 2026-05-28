@@ -1,0 +1,222 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: var(--font-display), 'Roboto Slab', Georgia, serif;
+  --font-body: var(--font-body), Roboto, sans-serif;
+  --font-mono: var(--font-mono), 'Roboto Mono', monospace;
+
+  /* Material You Dynamic Tonal Palette (Seed color #00BCD4 Cyan) */
+  --color-md-primary: #00BCD4;
+  --color-md-on-primary: #003640;
+  --color-md-primary-container: #004F5A;
+  --color-md-on-primary-cont: #A2EEFF;
+
+  --color-md-secondary: #BB86FC;
+  --color-md-on-secondary: #21005E;
+  --color-md-secondary-container: #370088;
+  --color-md-on-secondary-cont: #E8DDFF;
+
+  --color-md-tertiary: #FDD663;
+  --color-md-on-tertiary: #3A2E00;
+  --color-md-tertiary-container: #554400;
+  --color-md-on-tertiary-cont: #FDEEA0;
+
+  --color-md-error: #CF6679;
+  --color-md-on-error: #640020;
+  --color-md-error-container: #8C0032;
+
+  /* Deep Space Surfaces */
+  --color-md-background: #04080F;
+  --color-md-surface: #0A101D;
+  --color-md-surface-variant: #121F35;
+  --color-md-surface-container: #081426;
+  --color-md-surface-container-high: #0F2544;
+  --color-md-surface-bright: #173863;
+
+  /* Outline & Translucent Borders */
+  --color-md-outline: rgba(0, 188, 212, 0.25);
+  --color-md-outline-variant: rgba(0, 188, 212, 0.08);
+
+  /* Typography Colors */
+  --color-md-on-surface: #E3F2FD;
+  --color-md-on-surface-var: #8AB4F8;
+  --color-md-on-surface-faint: #2C4B75;
+
+  /* Custom space glass surface */
+  --color-glass-surface: rgba(8, 20, 38, 0.65);
+  --color-glass-border: rgba(0, 188, 212, 0.18);
+  --color-glass-glow: rgba(0, 188, 212, 0.06);
+
+  /* Shape tokens */
+  --radius-shape-xs: 4px;
+  --radius-shape-sm: 8px;
+  --radius-shape-md: 12px;
+  --radius-shape-lg: 16px;
+  --radius-shape-xl: 24px;
+  --radius-shape-full: 9999px;
+}
+
+:root {
+  /* Fluid type scale */
+  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+  --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+  --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+  --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
+  --text-hero: clamp(3rem, 0.5rem + 7vw, 7.5rem);
+
+  /* Elev overlays */
+  --md-elev-1: rgba(0, 188, 212, 0.05);
+  --md-elev-2: rgba(0, 188, 212, 0.08);
+  --md-elev-3: rgba(0, 188, 212, 0.12);
+  --md-elev-4: rgba(0, 188, 212, 0.15);
+  --md-elev-5: rgba(0, 188, 212, 0.20);
+  
+  --motion-standard: cubic-bezier(0.2, 0.0, 0.0, 1.0);
+  --motion-spring: cubic-bezier(0.34, 1.56, 0.64, 1.0);
+}
+
+::selection {
+  background: rgba(0, 188, 212, 0.3);
+  color: #E3F2FD;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #04080F;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 188, 212, 0.4);
+  border-radius: var(--radius-shape-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 188, 212, 0.7);
+}
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 188, 212, 0.4) #04080F;
+  scroll-behavior: initial; /* Lenis handles smooth scrolling */
+}
+
+body {
+  background-color: var(--color-md-background);
+  color: var(--color-md-on-surface);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+/* Glassmorphism utility */
+.glass-panel {
+  background: var(--color-glass-surface);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--color-glass-border);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), inset 0 0 12px var(--color-glass-glow);
+}
+
+/* Scan lines */
+.scanlines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 188, 212, 0.04) 2px,
+    rgba(0, 188, 212, 0.04) 3px
+  );
+  animation: scan-move 10s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes scan-move {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 100px; }
+}
+
+/* State layers */
+.interactive-element {
+  position: relative;
+  transition: all var(--duration-medium-1) var(--motion-standard);
+}
+
+.interactive-element::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-md-primary);
+  opacity: 0;
+  border-radius: inherit;
+  transition: opacity 150ms linear;
+  pointer-events: none;
+}
+
+.interactive-element:hover::before {
+  opacity: 0.08;
+}
+
+.interactive-element:active::before {
+  opacity: 0.16;
+}
+
+/* Focus indicator */
+:focus-visible {
+  outline: 3px solid var(--color-md-primary);
+  outline-offset: 3px;
+  border-radius: var(--radius-shape-sm);
+}
+
+/* Orbiting Animation CSS */
+@keyframes orbit-cw {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes orbit-ccw {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+.animate-orbit-cw-12s { animation: orbit-cw 12s linear infinite; }
+.animate-orbit-cw-20s { animation: orbit-cw 20s linear infinite; }
+.animate-orbit-cw-30s { animation: orbit-cw 30s linear infinite; }
+
+.animate-orbit-ccw-12s { animation: orbit-ccw 12s linear infinite; }
+.animate-orbit-ccw-20s { animation: orbit-ccw 20s linear infinite; }
+.animate-orbit-ccw-30s { animation: orbit-ccw 30s linear infinite; }
+
+/* Constellation Timeline styles */
+.constellation-line {
+  stroke: var(--color-md-primary);
+  stroke-width: 2px;
+  stroke-dasharray: 8 4;
+  opacity: 0.4;
+}
+
+/* Typewriter cursor blink */
+@keyframes blink {
+  50% { opacity: 0; }
+}
+.cursor-blink {
+  animation: blink 0.7s step-end infinite;
+}
+
+/* Light beam text effect */
+.text-glow {
+  text-shadow: 0 0 10px rgba(0, 188, 212, 0.4), 0 0 20px rgba(0, 188, 212, 0.2);
+}
+
+/* Hyperspace section transition effect */
+.warp-flash {
+  position: fixed;
+  inset: 0;
+  background: white;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 9999;
+}

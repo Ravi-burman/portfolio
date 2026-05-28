@@ -130,17 +130,28 @@ export default function Hero() {
 
           <h1
             ref={nameRef}
-            className="text-glow font-display text-white text-5xl md:text-7xl lg:text-8xl font-black leading-none tracking-tight select-none mb-6 flex flex-wrap"
+            className="text-glow font-display text-white text-5xl md:text-7xl lg:text-8xl font-black leading-none tracking-tight select-none mb-6 flex flex-wrap gap-x-4"
           >
-            {nameString.split("").map((char, index) => (
-              <span
-                key={index}
-                className="letter-span inline-block cursor-default hover:text-md-primary transition-colors duration-150"
-                style={{ whiteSpace: char === " " ? "pre" : "normal" }}
-              >
-                {char}
-              </span>
-            ))}
+            <span className="whitespace-nowrap">
+              {"RAVI".split("").map((char, index) => (
+                <span
+                  key={`r-${index}`}
+                  className="letter-span inline-block cursor-default hover:text-md-primary transition-colors duration-150"
+                >
+                  {char}
+                </span>
+              ))}
+            </span>
+            <span className="whitespace-nowrap">
+              {"BURMAN".split("").map((char, index) => (
+                <span
+                  key={`b-${index}`}
+                  className="letter-span inline-block cursor-default hover:text-md-primary transition-colors duration-150"
+                >
+                  {char}
+                </span>
+              ))}
+            </span>
           </h1>
 
           {/* Role Chips */}
@@ -191,7 +202,7 @@ export default function Hero() {
             >
               {/* AI Portrait */}
               <Image
-                src="/ravi_avatar.png"
+                src="/portfolio/ravi_avatar.png"
                 alt="Ravi Burman - Full Stack Developer"
                 width={320}
                 height={380}

@@ -245,7 +245,7 @@ function HolographicEarth() {
   const orbitGeometry = new THREE.BufferGeometry().setFromPoints(ringPoints);
 
   return (
-    <group ref={earthGroupRef} position={[8, -8, -12]} rotation={[0.4, 0, 0.4]}>
+    <group ref={earthGroupRef} position={[12, -7, -15]} rotation={[0.4, 0, 0.4]}>
       {/* Glow aura */}
       <mesh>
         <sphereGeometry args={[4.2, 32, 32]} />
@@ -302,7 +302,7 @@ function SpaceStation() {
   });
 
   return (
-    <group ref={stationRef} position={[-8, -32, -15]} rotation={[0.2, 0.4, 0.1]}>
+    <group ref={stationRef} position={[-11, -32, -18]} rotation={[0.2, 0.4, 0.1]}>
       {/* Central Cylinder core */}
       <mesh>
         <cylinderGeometry args={[0.5, 0.5, 4, 16]} />

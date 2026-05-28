@@ -93,7 +93,7 @@ export default function About() {
                 <div className="relative w-24 h-24 rounded-full p-1 border border-md-primary shadow-[0_0_15px_rgba(0,188,212,0.3)] animate-[spin_20s_linear_infinite_paused] hover:animate-[spin_6s_linear_infinite]">
                   <div className="w-full h-full rounded-full overflow-hidden relative">
                     <Image
-                      src="/ravi_avatar.png"
+                      src="/portfolio/ravi_avatar.png"
                       alt="Ravi Burman Portrait"
                       fill
                       sizes="96px"
